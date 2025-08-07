@@ -11,7 +11,7 @@ export const newsletter = async (req: Request, res: Response) => {
       "https://api.brevo.com/v3/contacts",
       {
         email,
-        listIds: [2],
+        listIds: [process.env.BREVO_LIST_ID],
         updateEnabled: true,
       },
       {
