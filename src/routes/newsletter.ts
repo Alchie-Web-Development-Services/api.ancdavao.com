@@ -2,7 +2,12 @@ import axios from "axios";
 import {Request, Response} from "express";
 
 export const newsletter = async (req: Request, res: Response) => {
-  const {email} = req.body;
+  const body = JSON.parse(req.body || "{}");
+  const {email} = body;
+
+  if (req.method !== "POST") {
+    return res.status(405).json({error: "Method Not Allowed"});
+  }
 
   if (!email) return res.status(400).json({error: "Email is required"});
 
@@ -11,7 +16,7 @@ export const newsletter = async (req: Request, res: Response) => {
       "https://api.brevo.com/v3/contacts",
       {
         email,
-        listIds: [process.env.BREVO_LIST_ID],
+        listIds: [Number(process.env.BREVO_LIST_ID)],
         updateEnabled: true,
       },
       {
