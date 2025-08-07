@@ -4,7 +4,10 @@
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "dev": "netlify dev",
+    "test": "vitest run",
+    "test:watch": "vitest --watch"
   },
   "engines": {
     "node": "22"
