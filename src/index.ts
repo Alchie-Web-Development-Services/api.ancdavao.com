@@ -3,6 +3,7 @@ import {newsletter} from "./routes/newsletter";
 import express, { Router } from "express";
 import serverless from "serverless-http";
 import { home } from "./routes/home";
+import { generatePaymentLink } from "./routes/generatePaymentLink";
 
 const app = express();
 app.use(cors({origin: true}));
@@ -11,6 +12,7 @@ app.use(express.json());
 const router = Router();
 router.get("/", home);
 router.post("/newsletter", newsletter);
+router.post("/generate-payment-link", generatePaymentLink);
 
 app.use("/", router);
 
